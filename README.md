@@ -1,6 +1,6 @@
 # Tosca Yaml Plugins
 
-A Theia application and an eclipse plugin. Both use an Xtext language server.  
+A theia application and an eclipse plugin. Both use an Xtext language server.  
 This project is still work in progress.
 
 ## Building 

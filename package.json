@@ -1,49 +1,14 @@
 {
-  "name": "toscayaml",
-  "displayName": "ToscaYaml",
-  "description": "",
-  "version": "0.0.1",
-
   "private": true,
+  "scripts": {
+    "prepare": "lerna run prepare",
+    "build": "lerna run build",
+    "watch": "lerna run watch"
+  },
   "devDependencies": {
-    "@types/vscode": "^1.32.0"
+    "lerna": "2.4.0"
   },
   "workspaces": [
-    "xtext-dsl-extension",
-    "app"
-  ],
-  "engines": {
-    "vscode": "^1.32.0"
-  },
-  "activationEvents": [
-    "onCommand:extension.toscaYaml"
-  ],
-  "main": "./extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.toscaYaml",
-        "title": "Tosca Yaml"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/glob": "^7.1.1",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^10.12.21",
-    "@types/vscode": "^1.37.0",
-    "glob": "^7.1.4",
-    "mocha": "^6.1.4",
-    "typescript": "^3.3.1",
-    "tslint": "^5.12.1",
-    "vscode-test": "^1.0.2"
-  }
-
+    "xtext-dsl-extension", "app"
+  ]
 }
