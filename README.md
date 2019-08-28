@@ -1,14 +1,11 @@
-# Theia & Xtext Example
+# Tosca Yaml Plugins
 
-A Theia Application with an Xtext-based Language Server extension.
+A Theia application and an eclipse plugin. Both use an Xtext language server.  
+This project is still work in progress.
 
-## Development
+## Building 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/theia-ide/theia-xtext)
-
-... or check it out locally:
-
-Build the language server
+Building the language server
 ```
   cd xtext-dsl-language-server &&
   ./gradlew shadowJar &&
@@ -21,3 +18,6 @@ Build and start Theia
    cd app &&
    yarn start
 ```
+
+## Limitations
+As of right now "Description" key-value pairs do not work. And some parts of the TOSCA standard still have to be added to the grammar.
