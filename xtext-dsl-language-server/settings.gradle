@@ -1,0 +1,4 @@
+include 'org.iaas.xtext.ToscaYaml'
+include 'org.iaas.xtext.ToscaYaml.ide'
+include 'org.iaas.xtext.ToscaYaml.web'
+include 'org.iaas.xtext.ToscaYaml.tests'

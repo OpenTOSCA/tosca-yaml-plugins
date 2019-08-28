@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="yaml" nsURI="http://www.iaas.org/toscaPlugin/Yaml" nsPrefix="yaml">
+  <eClassifiers xsi:type="ecore:EClass" name="Yaml">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#//ToscaDefinitionVersion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//Description"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
+        eType="#//YamlContent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="YamlContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootContent" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopologyTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//NodeTemplateInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeTemplateInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" upperBound="-1" eType="#//Type"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//NodeTemplateInstanceContent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeTemplateInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//ParserRules"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//RelationshipTemplateInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipTemplateInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//RelationshipTemplateInstanceContent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipTemplateInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntitiyTypeSchemaContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//NodeTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeTypeInstanceContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//RelationshipTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationshipTypeInstanceContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CapabilitiyType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//CapabilityTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CapabilityTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CapabilityTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//DataTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//ParserRules"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArtifactType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//ArtifactTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArtifactTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArtifactTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//ParserRules"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//InterfaceTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationDefinitions" upperBound="-1"
+        eType="#//OperationDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//Inputs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//GroupTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//ParserRules"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolicyType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//PolicyTypeInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolicyTypeInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolicyTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//ParserRules"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//OperationDefinitionContent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Targets" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Triggers" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Implementation" eSuperTypes="#//OperationDefinitionContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inputs" eSuperTypes="#//OperationDefinitionContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FileExt" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MimeType" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidTargetTypes" eSuperTypes="#//RelationshipTypeInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidSourceTypes" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DerivedFrom" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Version" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Description" eSuperTypes="#//OperationDefinitionContent #//PropertiesInstanceContent #//EntrySchemaContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Directives" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Metadata" eSuperTypes="#//PropertiesInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Properties" eSuperTypes="#//RelationshipTypeInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertiesContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertiesInstanceContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalSchema" eSuperTypes="#//PropertiesInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EntrySchema" eSuperTypes="#//PropertiesInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EntrySchemaContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Members" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Required" eSuperTypes="#//PropertiesInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Default" eSuperTypes="#//PropertiesInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Status" eSuperTypes="#//PropertiesInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraints" eSuperTypes="#//PropertiesInstanceContent #//EntrySchemaContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Attributes" eSuperTypes="#//RelationshipTypeInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Requirements" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Capabilities" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Interfaces" eSuperTypes="#//RelationshipTypeInstanceContent #//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Artifacts" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeFilter" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Copy" eSuperTypes="#//ParserRules"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ToscaDefinitionVersion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParserRules" eSuperTypes="#//Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PlainYaml">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Node" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Content"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Map" eSuperTypes="#//Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Node">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleLineNodes"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultilineMap" eSuperTypes="#//Map">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Key" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Node" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleLineMap" eSuperTypes="#//Map #//SingleLineNodes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="#//Key"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListElement" eSuperTypes="#//List"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleLineList" eSuperTypes="#//List #//SingleLineNodes"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiline_Text" eSuperTypes="#//Content">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Key">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceContent" eSuperTypes="#//EntitiyTypeSchemaContent #//NodeTypeInstanceContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Targets #//Triggers #//Implementation #//Inputs #//FileExt #//MimeType #//ValidTargetTypes #//ValidSourceTypes #//DerivedFrom #//Version #//Type #//Description #//Directives #//Metadata #//Properties #//PropertiesContent #//ExternalSchema #//EntrySchema #//Members #//Required #//Default #//Status #//Constraints #//Attributes #//Requirements #//Capabilities #//Interfaces #//Artifacts #//NodeFilter #//Copy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" upperBound="-1" eType="#//Type"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlainYamlContent" eSuperTypes="#//PlainYaml"/>
+</ecore:EPackage>

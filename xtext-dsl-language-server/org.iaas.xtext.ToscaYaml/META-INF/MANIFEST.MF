@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.iaas.xtext.ToscaYaml
+Bundle-ManifestVersion: 2
+Bundle-Name: ToscaYaml
+Bundle-Vendor: My Company
+Bundle-Version: 1
+Bundle-SymbolicName: org.iaas.xtext.ToscaYaml; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.iaas.toscaYaml.validation,
+ org.iaas.toscaYaml.parser.antlr.lexer,
+ org.iaas.toscaYaml,
+ org.iaas.toscaYaml.yaml.util,
+ org.iaas.toscaYaml.generator,
+ org.iaas.toscaYaml.serializer,
+ org.iaas.toscaYaml.parser.antlr.internal,
+ org.iaas.toscaYaml.services,
+ org.iaas.toscaYaml.yaml,
+ org.iaas.toscaYaml.yaml.impl,
+ org.iaas.toscaYaml.scoping,
+ org.iaas.toscaYaml.parser.antlr
+Import-Package: org.apache.log4j

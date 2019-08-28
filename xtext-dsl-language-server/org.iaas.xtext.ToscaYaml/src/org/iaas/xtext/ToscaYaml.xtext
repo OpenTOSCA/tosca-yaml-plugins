@@ -1,0 +1,506 @@
+grammar org.iaas.toscaYaml.Yaml hidden(WS, SL_COMMENT)
+
+generate yaml 'http://www.iaas.org/toscaPlugin/Yaml' 
+
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+Yaml: {Yaml}
+	version=ToscaDefinitionVersion
+	(description=Description)?
+	(content+=YamlContent)*
+;
+
+YamlContent:
+	rootContent=(TopologyTemplate|
+	NodeType|RelationshipType|CapabilitiyType|DataType|ArtifactType|InterfaceType|GroupType|PolicyType)
+;
+
+TopologyTemplate:
+	name='topology_template:'
+	INDENT
+		(children+=(NodeTemplate|RelationshipTemplate))+
+	DEDENT
+;
+
+NodeTemplate: 
+	name='node_templates:' 
+	INDENT
+		(children+=NodeTemplateInstance)+
+	DEDENT
+;
+
+NodeTemplateInstance:
+	name=ID ':'
+	INDENT
+		type+=Type
+		(children+=NodeTemplateInstanceContent)+
+	DEDENT
+;
+
+NodeTemplateInstanceContent:
+	attributes=(Description|Directives|Metadata|Properties|
+				Attributes|Requirements|Capabilities|
+				Interfaces|Artifacts|NodeFilter|Copy)
+;
+
+RelationshipTemplate: 
+	name='relationship_templates:'
+	INDENT
+		(children+=RelationshipTemplateInstance)+
+	DEDENT
+;
+
+RelationshipTemplateInstance:
+	name=ID ':'
+	INDENT
+		(children+=RelationshipTemplateInstanceContent)+
+	DEDENT
+;
+
+RelationshipTemplateInstanceContent:
+	attributes=(Description|Metadata|Properties
+				|Attributes|Interfaces|Copy)
+;
+
+EntitiyTypeSchemaContent: {InstanceContent}
+	attributes=(DerivedFrom|Version|Metadata|Description)
+;
+
+NodeType: 
+	name='node_types:'
+	INDENT
+		(nodes+=NodeTypeInstance)+
+	DEDENT
+;
+
+NodeTypeInstance: {NodeTypeInstance}
+	name=ID ':' 
+	INDENT
+		(children+=(NodeTypeInstanceContent|EntitiyTypeSchemaContent))*
+	DEDENT
+;
+
+NodeTypeInstanceContent: {InstanceContent}
+	attributes=(Attributes|Properties|Requirements|Capabilities|Interfaces)
+;
+
+RelationshipType:
+	name='relationship_types:'
+	INDENT 
+		(children+=RelationshipTypeInstance)+
+	DEDENT
+;
+
+RelationshipTypeInstance:
+	name=ID ':'
+	INDENT 
+		(children+=(RelationshipTypeInstanceContent|EntitiyTypeSchemaContent))*
+	DEDENT
+;
+
+RelationshipTypeInstanceContent:
+	Properties|Attributes|Interfaces|ValidTargetTypes
+;
+
+
+CapabilitiyType:
+	name='capability_types:'
+	INDENT
+		(children+=CapabilityTypeInstance)+
+	DEDENT
+;
+
+CapabilityTypeInstance:
+	name=ID ':'
+	INDENT
+		(children+=(CapabilityTypeInstanceContent|EntitiyTypeSchemaContent))*
+	DEDENT
+;
+
+CapabilityTypeInstanceContent:
+	attributes=(Properties|Attributes|ValidSourceTypes)
+;
+
+DataType:
+	name='data_types:'
+	INDENT
+		(children+=DataTypeInstance)+
+	DEDENT
+;
+
+DataTypeInstance:
+	name=ID ':'
+	INDENT
+		(children+=(DataTypeInstanceContent | EntitiyTypeSchemaContent))+
+	DEDENT
+;
+
+DataTypeInstanceContent:
+	attributes=(Constraints | Properties)
+;
+
+ArtifactType:
+	name='artifact_types:'
+	INDENT
+		(children+=(ArtifactTypeInstance))+
+	DEDENT
+;
+
+ArtifactTypeInstance:
+	name=ID ':'
+	INDENT
+		(children+=(ArtifactTypeInstanceContent|EntitiyTypeSchemaContent))*
+	DEDENT
+;
+
+ArtifactTypeInstanceContent:
+	attributes=(MimeType|FileExt|Properties)
+;
+
+InterfaceType:
+	name='interface_types:'
+	INDENT
+		(children+=InterfaceTypeInstance)+
+	DEDENT
+;
+
+InterfaceTypeInstance:
+	name=ID ':'
+	INDENT
+		((children+=(InterfaceTypeInstanceContent|EntitiyTypeSchemaContent))|
+		(operationDefinitions+=OperationDefinition))*
+	DEDENT
+;
+
+InterfaceTypeInstanceContent:
+	attributes=Inputs
+;
+
+GroupType:
+	name='group_types:'
+	INDENT
+		(children+=GroupTypeInstance)+
+	DEDENT
+;
+
+GroupTypeInstance:
+	name=ID ':' 
+	INDENT
+		(children+=(GroupTypeInstanceContent|EntitiyTypeSchemaContent))*
+	DEDENT
+;
+
+GroupTypeInstanceContent:
+	attributes=(Properties|Members|Requirements|Capabilities|Interfaces)
+;
+
+PolicyType:
+	name='policy_types:'
+	INDENT
+		(children+=PolicyTypeInstance)*
+	DEDENT
+;
+
+PolicyTypeInstance:
+	name=ID ':'
+	INDENT
+		(children+=(PolicyTypeInstanceContent|EntitiyTypeSchemaContent))*
+	DEDENT
+;
+
+PolicyTypeInstanceContent:
+	attributes=(Properties|Targets|Triggers)
+;
+
+OperationDefinition:
+	name=ID ':'
+	INDENT
+		(children+=OperationDefinitionContent)*
+	DEDENT
+;
+
+OperationDefinitionContent:
+	Description|Implementation|Inputs
+;
+
+Targets: {Attribute}
+	name='targets:' content=List
+;
+
+Triggers: {Attribute}
+	name='triggers:' content=List
+;
+
+Implementation: {Attribute}
+	name='implementation:' content=PlainYaml
+;
+
+Inputs: {Attribute}
+	name='inputs:' content=PlainYaml
+;
+
+FileExt: {Attribute}
+	name='file_ext:' content=List
+;
+
+MimeType: {Attribute}
+	name='mime_type:'  value=Scalar
+;
+
+ValidTargetTypes: {Attribute}
+	name='valid_target_types:' content=List
+;
+
+ValidSourceTypes: {Attribute}
+	name='valid_source_types:'  content=List
+;
+
+DerivedFrom: {Attribute}
+	name='derived_from:'  value=Scalar
+;
+
+Version: {Attribute}
+	name='version:' value=Scalar
+;
+
+Type: {Attribute}
+	name='type:'  value=Scalar
+;
+
+Description: {Attribute}
+	name='description:' (((WS)* (ID (WS+ ID)*))|
+		('>' 
+		INDENT
+			ID (WS+ ID)*
+		DEDENT))
+;
+
+
+Directives: {Attribute}
+	name='directives' ':' value=Scalar
+;
+
+Metadata:  {Attribute}
+	name='metadata' ':' content=PlainYaml
+;
+
+Properties: {Attribute}
+	name='properties' ':'
+	INDENT
+		(children+=PropertiesContent)+
+	DEDENT
+;
+
+PropertiesContent: {Attribute}
+	ID ':' 
+		INDENT
+			((type+=Type)|
+			(children+=PropertiesInstanceContent))*
+		DEDENT
+;
+
+PropertiesInstanceContent:
+	Description|Required|Default|Status|Constraints|ExternalSchema|EntrySchema|Metadata
+;
+
+ExternalSchema: {Attribute}
+	name='external_schema' ':' value=Scalar
+;
+
+EntrySchema: {Attribute}
+	name='entry_schema' ':' 
+	INDENT
+		type+=Type
+		(children+=EntrySchemaContent)*
+	DEDENT
+;
+
+EntrySchemaContent: 
+	Description|Constraints
+;
+
+Members: {Attribute}
+	name='members:' content=List
+;
+
+Required: {Attribute}
+	name='required:' value=Scalar
+;
+
+Default: {Attribute}
+	name='default:' value=Scalar
+; 
+
+Status: {Attribute}
+	name='status:'  value=Scalar
+;
+
+Constraints: {Attribute}
+	name='constraints:' content=PlainYaml
+;
+
+Attributes: {Attribute}
+	name='attributes:'  content=PlainYaml
+;
+
+Requirements: {Attribute}
+	name='requirements:' content=PlainYaml
+;
+
+Capabilities: {Attribute}
+	name='capabilities:' content=PlainYaml
+;
+
+Interfaces: {Attribute}
+	name='interfaces:' content=PlainYaml
+;
+
+Artifacts: {Attribute}
+	name='artifacts:' value=Scalar
+; 
+
+NodeFilter: {Attribute}
+	name='node_filter:'  value=Scalar
+;
+
+Copy: {Attribute}
+	name='copy:' value=Scalar
+;
+
+ToscaDefinitionVersion:
+	name=ToscaDefVersion ':' ToscaDefValue
+;
+
+ToscaDefVersion:
+	'tosca_definitions_version'
+;
+
+ToscaDefValue:
+	'tosca_simple_yaml_1_2'
+;
+
+
+ParserRules:
+	Copy|NodeFilter|Artifacts|Interfaces|Capabilities|Requirements|Attributes|Constraints|Status|Default|
+	Required|ExternalSchema|EntrySchema|Properties|Metadata|Directives|Description|Type|Version|DerivedFrom|
+	ValidSourceTypes|ValidTargetTypes|MimeType|FileExt|Inputs|Members|Targets|Triggers|Implementation
+;
+
+/**
+ * PLAIN YAML parsing starts here
+ * everything inside plain yaml has to be resolved 
+ * internally in the future
+ */
+
+PlainYaml: {PlainYamlContent}
+	Scalar|(
+	INDENT
+		(children+=Node)*
+	DEDENT)
+;
+
+Node: 
+	(Map|List|ParserRules)
+;
+
+Content:
+	Scalar|Multiline_Text
+;
+
+Map:
+	MultilineMap|SingleLineMap
+;
+
+List:
+	ListElement|SingleLineList
+;
+
+SingleLineNodes:
+	SingleLineList|SingleLineMap
+;
+
+MultilineMap:
+	name=Key ':' (value=(Content|SingleLineNodes|MultilineMap)|
+	(INDENT
+		(children+=Node)+
+	DEDENT))
+;
+
+SingleLineMap:
+	'{' (keys+=Key ':' values+=(Content|Node) (',' keys+=Key ':' values+=(Content|Node))*)? '}'
+;
+
+ListElement: 
+	PreListElement children+=(Content|Node)
+;
+PreListElement hidden(SL_COMMENT):
+	'-';
+
+SingleLineList:
+	'[' (children+=(Content|Node) (',' children+=(Content|Node))*)? ']'
+;
+
+Scalar:
+	(Number Unit?)| URL | ID | STRING
+;
+
+Unit:
+	ScalarUnitSize|ScalarUnitTime|ScalarUnitFrequency
+;
+
+Multiline_Text:
+	'>'
+	INDENT 
+		(content+=Scalar)+
+	DEDENT
+;
+
+// 3.2.6.4 scalar-unit.size
+ScalarUnitSize:
+	('B'|'b'
+	'KB'|'kb'|'kB'|'Kb'|
+	'MB'|'mb'|'mB'|'Mb'|
+	'GB'|'gb'|'Gb'|'gB'|
+	'TB'|'tb'|'Tb'|'tB')
+;
+
+// 3.2.6.5 scalar-unit.time
+ScalarUnitTime:
+	('d'|'h'|'m'|'s'|'ms'|'us'|'ns')
+;
+
+ScalarUnitFrequency:
+	('Hz'|'kHz'|'MHz'|'GHz')
+; 
+
+Key:
+	content=ID
+;
+
+Number:
+	INT|FLOAT
+;
+		
+terminal INDENT: 'synthetic:INDENT';
+terminal DEDENT: 'synthetic:DEDENT';
+
+terminal ID: ('a'..'z'|'A'..'Z'|'_'|'/'|'-'|'='|'?'|'!'|'('|')'|'.') 
+	('a'..'z'|'A'..'Z'|'_'|'0'..'9'|'/'|'-'|'='|'?'|'!'|'('|')'|'.')*
+;
+
+terminal URL:
+	(('http'('s')?'://' ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'\\'|'/'|'='|'?'|'!'|'('|')'|'.'|'-'|':')* )|'localhost')
+;
+
+
+terminal SL_COMMENT: '#' !('\n'|'\r')*;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal FLOAT returns ecore::EFloat: INT '.' INT;
+terminal STRING returns ecore::EString:
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
+			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'";
+
+terminal WS: (' '|'\t'|'\r'|'\n')+;
+
+
+terminal ANY_OTHER: .;

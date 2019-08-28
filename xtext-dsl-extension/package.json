@@ -1,0 +1,36 @@
+{
+  "name": "@theia/xtext-dsl-extension",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "next",
+    "@theia/languages": "next",
+    "@theia/monaco": "next",
+    "monaco-editor-core": "^0.14.6",
+    "monaco-languageclient": "^0.9.0"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "copyfiles": "latest",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "copy-ls": "rimraf build && copyfiles -f ../xtext-dsl-language-server/org.iaas.xtext.ToscaYaml.ide/build/libs/ToscaYaml.jar build",
+    "clean": "rimraf lib",
+    "build": "tsc && yarn run copy-ls",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/frontend-extension",
+      "backend": "lib/node/backend-extension"
+    }
+  ]
+}

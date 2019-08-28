@@ -1,0 +1,26 @@
+plugins {
+	id 'com.github.johnrengelman.shadow' version '4.0.1'
+}
+
+dependencies {
+	compile project(':org.iaas.xtext.ToscaYaml')
+	compile "org.eclipse.xtext:org.eclipse.xtext.ide:${xtextVersion}"
+	compile "org.eclipse.xtext:org.eclipse.xtext.xbase.ide:${xtextVersion}"
+}
+
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+mainClassName = "org.eclipse.xtext.ide.server.ServerLauncher"
+
+shadowJar {
+	 baseName = 'ToscaYaml'
+    classifier = null
+    version = null
+    manifest {
+        attributes 'Main-Class': 'org.eclipse.xtext.ide.server.ServerLauncher'
+    }
+    
+}
+//this is an eclipse plugin project
+eclipseClasspath.enabled=false
+cleanEclipseClasspath.enabled=false

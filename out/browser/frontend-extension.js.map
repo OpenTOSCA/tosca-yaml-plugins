@@ -1,0 +1,1 @@
+{"version":3,"file":"frontend-extension.js","sourceRoot":"","sources":["../../xtext-dsl-extension/src/browser/frontend-extension.ts"],"names":[],"mappings":";;AAAA;;;;;GAKG;AACH,yCAA4C;AAC5C,0DAA0E;AAC1E,mEAAgE;AAEhE,kBAAe,IAAI,2BAAe,CAAC,IAAI,CAAC,EAAE;IACtC,IAAI,CAA6B,oCAA0B,CAAC,CAAC,EAAE,CAAC,6CAAqB,CAAC,CAAC,gBAAgB,EAAE,CAAC;AAC9G,CAAC,CAAC,CAAA"}
