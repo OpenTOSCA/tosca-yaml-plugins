@@ -1,0 +1,22 @@
+{
+    "name": "ToscaYaml",
+    "scopeName": "text.yml",
+    "fileTypes": [
+        "yml"
+    ],
+    "repository": {
+        "general": {
+            "patterns": [
+                {
+                    "include": "#linecomment"
+                }
+            ]
+        },
+        "linecomment": {
+            "name": "comment.line.ToscaYaml",
+            "begin": "#",
+            "end": "(?=$)"
+        }
+    },
+    "uuid": "8383e49a-fa0d-4bb5-827b-10e8abb294ca"
+}
