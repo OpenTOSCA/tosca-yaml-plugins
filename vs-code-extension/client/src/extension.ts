@@ -18,8 +18,7 @@ let client: LanguageClient;
 export function activate(context: ExtensionContext) {
 	// The server is implemented with xtext
 	let launcher = os.platform() === 'win32' ? 'ToscaYaml-standalone.bat' : 'ToscaYaml-standalone';
-    let script = context.asAbsolutePath(path.join('..', 'xtext-dsl-language-server', 'org.iaas.xtext.ToscaYaml.ide'
-    , 'build', 'install', 'org.iaas.xtext.ToscaYaml.ide', 'bin', launcher));
+    let script = context.asAbsolutePath(path.join('language-server', 'bin', launcher));
 
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used

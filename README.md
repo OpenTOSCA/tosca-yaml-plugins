@@ -1,6 +1,6 @@
-# Tosca Yaml Plugins
+# TOSCA Yaml Plugins
 
-A theia application and an eclipse plugin. Both use an Xtext language server.  
+Theia, VSCode and Eclipse Plugin for the TOSCA Yaml langugage. Both use an Xtext language server.  
 This project is still work in progress.
 
 ## Building 
@@ -19,13 +19,15 @@ Build and start Theia
    cd app
    yarn start
 ```
-Build and start VSCode extension
+
+Build and install self contained VSCode extension
 ```
    cd vs-code-extension/
    yarn install
-   code .
+   vsce package
+   code --install-extension ToscaYaml-1.0.0.vsix
 ```
-Press F5 in the VSCode instance to launch the extension
+The VSCode package includes the language server
 
 ## Limitations
-As of right now "Description" key-value pairs do not work. And some parts of the TOSCA standard still have to be added to the grammar.
+As of right now "Description" key-value pairs do not work. And some parts of the TOSCA standard still have to be added to the grammar in the language server.
